@@ -7,14 +7,31 @@ import random
 from .forms import VoterForm
 from django.core.mail import EmailMessage
 from django.conf import settings
+from django.views import View
 
-def home(request):
 
-    if request.method == "POST":
+class Home(View):
 
+    def get(self, request, *args, **kwargs):
+        persons = list(Person.objects.filter(voted=False).values_list("name", flat=True))
+        return render(request, "home.html", {"persons":persons})
+    
+    def post(self, request):
         form = VoterForm(request.POST)
+
         if form.is_valid():
             userIP = request.META.get('HTTP_X_FORWARDED_FOR')
+
+            if userIP:
+                ip = userIP.split(',')[0]
+            else:
+                ip = request.META.get('REMOTE_ADDR')
+
+            if Voter.objects.filter(Q(ip_address__icontains=ip)).exists():
+                alreadyVoted = "Nie możesz zagłosować ponownie!"
+                persons = list(Person.objects.filter(voted=False).values_list("name", flat=True))
+                return render(request, "home.html", {"persons":persons, "alreadyVoted":alreadyVoted})
+
             email = request.POST["email"]
             name = request.POST["name"]
 
@@ -24,7 +41,7 @@ def home(request):
             person_obj = Person.objects.get(name=name)
 
             #create and save voter with proper data
-            voter_obj = Voter(name=name,email=email, ip_address="abc", chosen_person=chosen_obj)
+            voter_obj = Voter(name=name,email=email, ip_address=ip, chosen_person=chosen_obj)
             voter_obj.save()
 
             #mark scope person as chosen
@@ -48,7 +65,3 @@ def home(request):
 
             request.session["chosen"] = chosen
             return HttpResponseRedirect(request.path)
-
-    else:
-        persons = list(Person.objects.filter(voted=False).values_list("name", flat=True))
-        return render(request, "home.html", {"persons":persons})

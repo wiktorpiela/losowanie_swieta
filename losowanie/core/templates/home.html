@@ -22,7 +22,8 @@
         <button type="submit">Losuj</button>
     </form>
     
-    {{request.session.chosen}}
+    <p>{{request.session.chosen}}</p>
+    <p>{{alreadyVoted}}</p>
     
 {% endblock content %}
     
