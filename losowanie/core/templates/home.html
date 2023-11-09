@@ -6,6 +6,7 @@
 
 {% block content %}
 
+
     <div class="row">
 
         <div class="center">
@@ -23,18 +24,19 @@
                     
                 </select>
     
-                <input type="email" name="email" placeholder="Wpisz email" required>
+                <input type="email" name="email" placeholder="Wpisz swój adres email" required>
                 <button type="submit">Losuj</button>
             </form>
-
-            <div class="chosen">
-                <p>Wylosowane osoba to: <strong>{{request.session.chosen}}</strong></p>
-            </div>
-            <div class="alreadyVoted">
-                <p>{{alreadyVoted}}</p>
-            </div>
             
         </div>
+
+        <div class="chosen">
+            <p>Wylosowane osoba to: <strong>{{request.session.chosen}}</strong></p>
+        </div>
+        <div class="alreadyVoted">
+            <p>{{alreadyVoted}}</p>
+        </div>
+
     </div>
 
 {% endblock content %}

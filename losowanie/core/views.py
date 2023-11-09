@@ -14,7 +14,7 @@ class Home(View):
 
     def get(self, request, *args, **kwargs):
         persons = list(Person.objects.filter(voted=False).values_list("name", flat=True))
-        return render(request, "home.html", {"persons":persons})
+        return render(request, "home.html", {"persons":sorted(persons)})
     
     def post(self, request):
         form = VoterForm(request.POST)

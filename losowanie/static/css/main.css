@@ -15,6 +15,7 @@ html, body {
     max-width: 1140px;
     margin: 0 auto;
 }
+
 /* REUSABLE END */
 
 .center{
@@ -24,6 +25,8 @@ html, body {
     border-radius: 1.5rem;
     width: 50rem;
     margin: 20rem auto;
+    box-shadow: 0.5rem 0.5rem 0.25rem black;;
+
 }
 
 .center h1{
@@ -34,15 +37,24 @@ html, body {
 .center form{
     display: flex;
     flex-direction: column;
-    margin: 2rem 0;
+    /* margin: 2rem 0; */
+    margin-top: 2rem;
 }
 
 .center form > * {
-    margin-bottom: 1rem;
     font-size: 2rem;
 }
 
-form input, select, button{
+form input, select{
     padding: 1rem;
     text-align: center;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+form button{
+    width: 12rem;
+    margin: 0 auto;
+    padding: 0.75rem;
+    border-radius: 1rem;
 }

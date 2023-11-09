@@ -14,12 +14,29 @@
         
     {% endblock title %}
         </title>
+
+<style>
+    body{
+        background-color: cadetblue;
+        background-image: url("static/css/img/snow.png");
+        background-position: 0 0;
+        animation:
+            snowfall 10s linear infinite;
+    }
+
+    @keyframes snowfall{
+       100% {
+        background-position: 70em 70em;
+       } 
+    }
+</style>
+
 </head>
 <body>
-    
+
     {% block content %}
-        
+    
     {% endblock content %}
-        
+
 </body>
 </html>
