@@ -5,26 +5,38 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>hellow</h1>
-    <form method="POST">
-        {% csrf_token %}
 
-        <select name="name" id="name" required>
-            <option value="" selected disabled>Wybierz swoje imię</option>
+    <div class="row">
 
-            {% for person in persons %}
-                <option value="{{person}}">{{person}}</option>
-            {% endfor %}
+        <div class="center">
+
+            <h1>Świąteczne losowanie</h1>
+            <form method="POST">
+                {% csrf_token %}
+    
+                <select name="name" id="name" required>
+                    <option value="" selected disabled>Wybierz swoje imię</option>
+    
+                    {% for person in persons %}
+                        <option value="{{person}}">{{person}}</option>
+                    {% endfor %}
+                    
+                </select>
+    
+                <input type="email" name="email" placeholder="Wpisz email" required>
+                <button type="submit">Losuj</button>
+            </form>
+
+            <div class="chosen">
+                <p>Wylosowane osoba to: <strong>{{request.session.chosen}}</strong></p>
+            </div>
+            <div class="alreadyVoted">
+                <p>{{alreadyVoted}}</p>
+            </div>
             
-        </select>
+        </div>
+    </div>
 
-        <input type="email" name="email" placeholder="Wpisz email" required>
-        <button type="submit">Losuj</button>
-    </form>
-    
-    <p>{{request.session.chosen}}</p>
-    <p>{{alreadyVoted}}</p>
-    
 {% endblock content %}
     
     

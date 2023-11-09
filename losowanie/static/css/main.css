@@ -1,0 +1,48 @@
+/* REUSABLE */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    font-size: 10px;
+    font-family: 'Lato';
+    font-weight: 400;
+}
+
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+/* REUSABLE END */
+
+.center{
+    margin-top: 20rem;
+    background-color: blueviolet;
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    width: 50rem;
+    margin: 20rem auto;
+}
+
+.center h1{
+    font-size: 4rem;
+    text-align: center;
+}
+
+.center form{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0;
+}
+
+.center form > * {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+form input, select, button{
+    padding: 1rem;
+    text-align: center;
+}
