@@ -6,6 +6,7 @@ from .models import Voter, Scope, Person
 import random
 from .forms import VoterForm
 from django.core.mail import EmailMessage
+from django.conf import settings
 
 def home(request):
 
@@ -33,6 +34,17 @@ def home(request):
             # mark voting person as voted
             person_obj.voted = True
             person_obj.save()
+
+            #send email confirmation
+            email = EmailMessage(
+                f"Świąteczne losowanie",
+                f"Cześć {name}, <br> Wylosowana przez Ciebie osoba to: <strong>{chosen}</strong>.<br>"
+                "Wesołych Świąt życzy GeoSoftware.",
+                settings.DEFAULT_FROM_EMAIL,
+                [email]
+            )
+            email.content_subtype="html"
+            email.send()
 
             request.session["chosen"] = chosen
             return HttpResponseRedirect(request.path)

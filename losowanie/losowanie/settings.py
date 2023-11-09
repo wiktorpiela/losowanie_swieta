@@ -120,3 +120,4 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ["EMAIL"]
 EMAIL_HOST_PASSWORD = os.environ["PASSWORD"]
+DEFAULT_FROM_EMAIL = 'Świąteczne Losowanie<geosoftware.py@gmail.com>'
