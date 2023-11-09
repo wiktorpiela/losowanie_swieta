@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Świąteczne losowanie
+{% endblock title %}
+
+{% block content %}
+    <h1>hellow</h1>
+    <form method="POST">
+        {% csrf_token %}
+
+        <select name="name" id="name" required>
+            <option value="" selected disabled>Wybierz swoje imię</option>
+
+            {% for person in persons %}
+                <option value="{{person}}">{{person}}</option>
+            {% endfor %}
+            
+        </select>
+
+        <input type="email" name="email" placeholder="Wpisz email" required>
+        <button type="submit">Losuj</button>
+    </form>
+    
+    {{request.session.chosen}}
+    
+{% endblock content %}
+    
+    
