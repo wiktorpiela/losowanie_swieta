@@ -32,10 +32,13 @@
             
         </div>
 
-        <div class="message">
-            <p>Wylosowana osoba to: <strong>{{request.session.chosen}}</strong></p>
-        </div>
         
+        {% if request.session.chosen %}
+            <div class="message">
+                <p>Wylosowana osoba to: <strong>{{request.session.chosen}}</strong></p>
+            </div>
+        {% endif %}
+            
         {% if alreadyVoted %}
             <div class="message">
                 <p>{{alreadyVoted}}</p>
