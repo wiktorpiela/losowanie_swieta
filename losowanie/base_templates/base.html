@@ -9,15 +9,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <title>
-    {% block title %}
-        
-    {% endblock title %}
-        </title>
+    <title>{% block title %}{% endblock title %}</title>
 
 <style>
     body{
-        background-color: cadetblue;
+        background-color: #BB2528;
         background-image: url("static/css/img/snow.png");
         background-position: 0 0;
         animation:
@@ -33,10 +29,8 @@
 
 </head>
 <body>
-
     {% block content %}
     
     {% endblock content %}
-
 </body>
 </html>

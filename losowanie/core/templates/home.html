@@ -1,17 +1,21 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
     Świąteczne losowanie
 {% endblock title %}
 
 {% block content %}
 
-
     <div class="row">
+
+
 
         <div class="center">
 
             <h1>Świąteczne losowanie</h1>
+            <div class="image">
+                <img src="{% static 'css/img/prezenty.jpg' %}" alt="gifts">
+            </div>
             <form method="POST">
                 {% csrf_token %}
     

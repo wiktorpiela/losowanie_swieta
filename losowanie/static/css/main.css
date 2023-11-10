@@ -19,12 +19,11 @@ html, body {
 /* REUSABLE END */
 
 .center{
-    margin-top: 20rem;
-    background-color: blueviolet;
+    background-color: #146B3A;
     padding: 2.5rem;
     border-radius: 1.5rem;
     width: 50rem;
-    margin: 20rem auto;
+    margin: 15rem auto;
     box-shadow: 0.5rem 0.5rem 0.25rem black;;
 
 }
@@ -32,6 +31,7 @@ html, body {
 .center h1{
     font-size: 4rem;
     text-align: center;
+    color: #F8B229;
 }
 
 .center form{
@@ -57,4 +57,19 @@ form button{
     margin: 0 auto;
     padding: 0.75rem;
     border-radius: 1rem;
+    background-color: #F8B229;
+}
+
+form button:hover{
+    background-color: #D69007;
+}
+
+.image{
+    margin: 2rem auto;
+    width: 40rem;
+}
+
+.image img{
+    width: 100%;
+    border-radius: 1.3rem;
 }
