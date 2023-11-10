@@ -41,7 +41,7 @@ class Home(View):
             
             #get Person object and handle exception if doesnt exists
             try:
-                person_obj = Person.objects.get(name=name)
+                person_obj = Person.objects.get(name=name, voted=False)
             except ObjectDoesNotExist:
                 alreadyVoted = "Ta osoba już wylosowała!"
                 persons = list(Person.objects.filter(voted=False).values_list("name", flat=True))
