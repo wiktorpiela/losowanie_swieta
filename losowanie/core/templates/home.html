@@ -8,8 +8,6 @@
 
     <div class="row">
 
-
-
         <div class="center">
 
             <h1>Świąteczne losowanie</h1>
@@ -34,13 +32,16 @@
             
         </div>
 
-        <div class="chosen">
-            <p>Wylosowane osoba to: <strong>{{request.session.chosen}}</strong></p>
+        <div class="message">
+            <p>Wylosowana osoba to: <strong>{{request.session.chosen}}</strong></p>
         </div>
-        <div class="alreadyVoted">
-            <p>{{alreadyVoted}}</p>
-        </div>
-
+        
+        {% if alreadyVoted %}
+            <div class="message">
+                <p>{{alreadyVoted}}</p>
+            </div>   
+        {% endif %}
+            
     </div>
 
 {% endblock content %}
