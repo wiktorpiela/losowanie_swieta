@@ -1,0 +1,90 @@
+/* REUSABLE */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    font-size: 10px;
+    font-family: 'Lato';
+    font-weight: 400;
+}
+
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+/* REUSABLE END */
+
+.center{
+    background-color: #146B3A;
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    width: 50rem;
+    margin: 15rem auto;
+    box-shadow: 0.5rem 0.5rem 0.25rem black;
+    margin-bottom: 5rem;
+
+}
+
+.center h1{
+    font-size: 4rem;
+    text-align: center;
+    color: #F8B229;
+}
+
+.center form{
+    display: flex;
+    flex-direction: column;
+    /* margin: 2rem 0; */
+    margin-top: 2rem;
+}
+
+.center form > * {
+    font-size: 2rem;
+}
+
+form input, select{
+    padding: 1rem;
+    text-align: center;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+form button{
+    width: 12rem;
+    margin: 0 auto;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    background-color: #F8B229;
+}
+
+form button:hover{
+    background-color: #D69007;
+}
+
+.image{
+    margin: 2rem auto;
+    width: 40rem;
+}
+
+.image img{
+    width: 100%;
+    border-radius: 1.3rem;
+}
+
+/* MESSAGES */
+.message{
+    margin: 0 auto;
+    background-color: #146B3A;
+    text-align: center;
+    font-size: 2.5rem;
+    padding: 1rem;
+    width: 50rem;
+    border-radius: 1.3rem;
+    box-shadow: 0.5rem 0.5rem 0.25rem black;
+    margin-bottom: 3rem;
+
+}
