@@ -23,10 +23,9 @@ html, body {
     padding: 2.5rem;
     border-radius: 1.5rem;
     width: 50rem;
-    margin: 15rem auto;
+    margin: 10rem auto;
     box-shadow: 0.5rem 0.5rem 0.25rem black;
     margin-bottom: 5rem;
-
 }
 
 .center h1{
@@ -86,5 +85,8 @@ form button:hover{
     border-radius: 1.3rem;
     box-shadow: 0.5rem 0.5rem 0.25rem black;
     margin-bottom: 3rem;
+}
 
+.message strong{
+    color: #D69007;
 }

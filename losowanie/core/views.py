@@ -27,8 +27,9 @@ class Home(View):
             email = request.POST["email"]
             name = request.POST["name"]
 
-            scope = list(Scope.objects.filter(Q(isChosen=False) & ~Q(name__icontains="dominik")).values_list("name", flat=True).order_by("?"))
+            scope = list(Scope.objects.filter(Q(isChosen=False) & ~Q(name__icontains=name)).values_list("name", flat=True).order_by("?"))
 
+            #handle case if scope is empty
             try:
                 chosen = random.choice(scope)
             except IndexError:
@@ -45,7 +46,6 @@ class Home(View):
                 alreadyVoted = "Ta osoba już wylosowała!"
                 persons = list(Person.objects.filter(voted=False).values_list("name", flat=True))
                 return render(request, "home.html", {"persons":sorted(persons), "alreadyVoted":alreadyVoted})
-
 
             #create and save voter with proper data
             voter_obj = Voter(name=name,email=email, ip_address=ip, chosen_person=chosen_obj)
