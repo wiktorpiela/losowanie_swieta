@@ -27,10 +27,10 @@ class Home(View):
             else:
                 ip = request.META.get('REMOTE_ADDR')
 
-            if Voter.objects.filter(Q(ip_address__icontains=ip)).exists():
-                alreadyVoted = "Nie możesz losować ponownie!"
-                persons = list(Person.objects.filter(voted=False).values_list("name", flat=True))
-                return render(request, "home.html", {"persons":persons, "alreadyVoted":alreadyVoted})
+            # if Voter.objects.filter(Q(ip_address__icontains=ip)).exists():
+            #     alreadyVoted = "Nie możesz losować ponownie!"
+            #     persons = list(Person.objects.filter(voted=False).values_list("name", flat=True))
+            #     return render(request, "home.html", {"persons":persons, "alreadyVoted":alreadyVoted})
 
             email = request.POST["email"]
             name = request.POST["name"]
