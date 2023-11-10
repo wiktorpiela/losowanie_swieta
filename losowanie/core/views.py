@@ -6,6 +6,7 @@ from .models import Voter, Scope, Person
 import random
 from .forms import VoterForm
 from django.core.mail import EmailMessage
+from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 from django.views import View
 
@@ -21,24 +22,30 @@ class Home(View):
 
         if form.is_valid():
             userIP = request.META.get('HTTP_X_FORWARDED_FOR')
-
-            if userIP:
-                ip = userIP.split(',')[0]
-            else:
-                ip = request.META.get('REMOTE_ADDR')
-
-            # if Voter.objects.filter(Q(ip_address__icontains=ip)).exists():
-            #     alreadyVoted = "Nie możesz losować ponownie!"
-            #     persons = list(Person.objects.filter(voted=False).values_list("name", flat=True))
-            #     return render(request, "home.html", {"persons":persons, "alreadyVoted":alreadyVoted})
+            ip = userIP.split(',')[0] if userIP else request.META.get('REMOTE_ADDR')
 
             email = request.POST["email"]
             name = request.POST["name"]
 
-            scope = list(Scope.objects.filter(Q(isChosen=False) & ~Q(name__icontains=name)).values_list("name", flat=True).order_by("?"))
-            chosen = random.choice(scope)
+            scope = list(Scope.objects.filter(Q(isChosen=False) & ~Q(name__icontains="dominik")).values_list("name", flat=True).order_by("?"))
+
+            try:
+                chosen = random.choice(scope)
+            except IndexError:
+                alreadyVoted = "Brak osób do wylosowania!"
+                persons = list(Person.objects.filter(voted=False).values_list("name", flat=True))
+                return render(request, "home.html", {"persons":sorted(persons), "alreadyVoted":alreadyVoted})
+
             chosen_obj = Scope.objects.get(name=chosen)
-            person_obj = Person.objects.get(name=name)
+            
+            #get Person object and handle exception if doesnt exists
+            try:
+                person_obj = Person.objects.get(name=name)
+            except ObjectDoesNotExist:
+                alreadyVoted = "Ta osoba już wylosowała!"
+                persons = list(Person.objects.filter(voted=False).values_list("name", flat=True))
+                return render(request, "home.html", {"persons":sorted(persons), "alreadyVoted":alreadyVoted})
+
 
             #create and save voter with proper data
             voter_obj = Voter(name=name,email=email, ip_address=ip, chosen_person=chosen_obj)
@@ -56,7 +63,7 @@ class Home(View):
             email = EmailMessage(
                 f"Świąteczne losowanie",
                 f"Cześć {name}, <br> Wylosowana przez Ciebie osoba to: <strong>{chosen}</strong>.<br>"
-                "Wesołych Świąt życzy GeoSoftware.",
+                "Wesołych Świąt!",
                 settings.DEFAULT_FROM_EMAIL,
                 [email]
             )
