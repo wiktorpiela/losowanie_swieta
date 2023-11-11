@@ -9,6 +9,7 @@ from django.core.mail import EmailMessage
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 from django.views import View
+from django.contrib import messages
 
 
 class Home(View):
@@ -70,5 +71,6 @@ class Home(View):
             email.content_subtype="html"
             email.send()
 
-            request.session["chosen"] = chosen
+            #request.session["chosen"] = chosen
+            messages.info(request, chosen)
             return HttpResponseRedirect(request.path)

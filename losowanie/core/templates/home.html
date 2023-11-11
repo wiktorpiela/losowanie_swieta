@@ -33,9 +33,11 @@
         </div>
 
         
-        {% if request.session.chosen %}
+        {% if messages %}
             <div class="message">
-                <p>Wylosowana osoba to: <strong>{{request.session.chosen}}</strong></p>
+                {% for message in messages %}
+                    <p>Wylosowana osoba to: <strong>{{message}}</strong></p>
+                {% endfor %}
             </div>
         {% endif %}
             
